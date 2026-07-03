@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LunarOverlay — SkyWars Stats</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>LunarOverlay SkyWars Stats</h1>
+    <p>Same star formula as the in-game overlay</p>
+  </header>
+
+  <main>
+    <div class="tabs">
+      <button type="button" class="tab active" data-panel="panel-stats">Player lookup</button>
+      <button type="button" class="tab" data-panel="panel-blacklist">Blacklist (Gist)</button>
+    </div>
+
+    <section id="panel-stats" class="panel active">
+      <p class="hint">
+        Uses the <a href="https://developer.hypixel.net/" target="_blank" rel="noopener">Hypixel API</a>.
+        Your API key stays in <strong>localStorage</strong> on your PC — never sent anywhere except Hypixel.
+      </p>
+
+      <div class="search-row">
+        <input type="text" id="username" placeholder="Minecraft username" autocomplete="off" spellcheck="false">
+        <button type="button" id="search-btn">Search</button>
+      </div>
+
+      <div class="settings">
+        <label for="api-key">Hypixel API key</label>
+        <input type="password" id="api-key" placeholder="paste key from developer.hypixel.net" autocomplete="off">
+      </div>
+
+      <div id="status"></div>
+
+      <div id="stats-card" class="card">
+        <div class="card-header">
+          <span id="player-name" class="player-name"></span>
+          <span id="rank-tag" class="rank-tag"></span>
+        </div>
+        <div id="star-display" class="star-display"></div>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="label">K/D</div>
+            <div id="stat-kd" class="value"></div>
+          </div>
+          <div class="stat-box">
+            <div class="label">W/L</div>
+            <div id="stat-wl" class="value"></div>
+          </div>
+          <div class="stat-box">
+            <div class="label">Wins</div>
+            <div id="stat-wins" class="value"></div>
+          </div>
+          <div class="stat-box">
+            <div class="label">Losses</div>
+            <div id="stat-losses" class="value"></div>
+          </div>
+          <div class="stat-box">
+            <div class="label">Kills</div>
+            <div id="stat-kills" class="value"></div>
+          </div>
+          <div class="stat-box">
+            <div class="label">Deaths</div>
+            <div id="stat-deaths" class="value"></div>
+          </div>
+          <div class="stat-box">
+            <div class="label">Win streak</div>
+            <div id="stat-streak" class="value"></div>
+          </div>
+          <div class="stat-box">
+            <div class="label">FK/D</div>
+            <div id="stat-fkd" class="value"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-blacklist" class="panel">
+      <p class="hint">
+        Load the same <code>blacklist.json</code> from your GitHub Gist that the overlay uses.
+        Read-only — edit via Discord bot or GitHub.
+      </p>
+      <label for="gist-url" style="font-size:0.8rem;color:var(--muted)">Gist raw URL</label>
+      <input type="text" id="gist-url" placeholder="https://gist.githubusercontent.com/.../raw/blacklist.json" style="width:100%;margin:0.35rem 0 0.75rem">
+      <button type="button" id="load-bl">Load blacklist</button>
+      <div id="status-bl" class="bl-status"></div>
+      <table class="blacklist-table" style="margin-top:1rem">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Tag</th>
+            <th>Reason</th>
+            <th>Added by</th>
+          </tr>
+        </thead>
+        <tbody id="blacklist-body">
+          <tr><td colspan="4" style="color:var(--muted)">Click Load blacklist</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    LunarOverlay · GitHub Pages · not affiliated with Hypixel or Mojang
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
